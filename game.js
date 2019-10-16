@@ -54,14 +54,24 @@ class Game {
     }
   }
 
+  //all of the things that need to happen after a player dies and a new game is started
+  void newRoundTasks() {
+    player1.revive(); //brings both players back to life
+    player2.revive();
+  }
+
   //the method that gets called when the game is paused
   void pauseScreen() {
     //draw message in center of screen saying: "Would you like to continue? Press Y or N."
     if (keyPressed) {
-      if (key == 'Y') {
+      if (key == 'Y') { //if Y is pressed, unpause the game
         paused = false;
-      } else if (key == 'N') {
+        if (!player1.ALVE || !player2.ALIVE) { //if one of the players is dead and the game is resumed, that means that it must be a new round
+          newRoundTasks();
+        }
+      } else if (key == 'N') { //if N is pressed, set active to false and unpause the
         active = false;
+        paused = false;
       }
     }
   }
@@ -70,14 +80,12 @@ class Game {
   //checks if the game gets paused by pressing 'P' on the keyboard
   bool pauseCheck() {
     if (keyPressed()) {
-      if (key == 'P') {
+      if (key == 'P') { //if P is pressed, pause the game
         paused = true;
-        while (paused) {
-          pauseScreen();
-        }
       }
     }
   }
+
 
   //checks to see if one of the players died
   bool deathCheck() {
@@ -88,21 +96,20 @@ class Game {
         player2.SCORE++;
       }
       paused = true;
-      while (paused) {
-        pauseScreen();
-      }
     }
   }
 
   //the method which updates the game
   void update() {
-    if (active && !paused) {
+    if (!paused && active) {
       userInput();
       otherTasks();
       bulletCollisions();
       updateComponents();
       pauseCheck()
       deathCheck();
+    } else if (active) {
+      pauseScreen();
     }
   }
 

@@ -15,10 +15,6 @@ class Singleplayer extends Game {
     //only controls player1
   }
 
-  void increaseComputerDifficulty() {
-    //
-  }
-
   //moves and controls the CPU player based on CPU_DIFFICULTY somehow
   void controlCPU() {
     //moves the CPU (changes player2.VY)
@@ -29,15 +25,23 @@ class Singleplayer extends Game {
   void otherTasks() {
     //...
     controlCPU();
+    //...
   }
 
-  void deathCheck() {
-    super.deathCheck();
-    if (!paused && (!player1.ALIVE || !player2.ALIVE)) { //if the game is resumed, make both players alive again
-      player1.ALIVE = true;
-      player2.ALIVE = true;
-      increaseComputerDifficulty();
-      player1.GUN = gunArray[player1.SCORE]; //sets the player's gun to the next gun
+  void winScreen() {
+    //displays a win message for a few seconds, then ends the game
+    this.active = false;
+  }
+
+  //waht happens after a new round begins
+  void newRoundTasks() {
+    super.newRoundTasks(); //revives both players
+    if (player1.SCORE > gunArray.length) { //if the player has killed the CPU with all the guns
+      winScreen(); //go to the win screen
     }
+    player1.GUN = gunArray[SCORE]; //gives player 1 the gun corresponding to his score
+    CPU_DIFFICULTY = _____; //incrases the CPU's CPU_DIFFICULTY
+    player2.HP = _____; //adjust the CPU's health based on difficulty
+    player2.GUN = ______; //adjusts the CPU's gun'based on difficulty
   }
 }

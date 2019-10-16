@@ -33,4 +33,10 @@ class Player extends Component {
     drawHealthBar();
     drawScore();
   }
+
+  //method to bring the playre back to full health, called usually when a new round beings
+  void revive() {
+    HP = ____;
+    ALIVE = true;
+  }
 }

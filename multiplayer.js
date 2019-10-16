@@ -46,12 +46,4 @@ class Multiplayer extends Game {
   //handles things that need to happen every update
   void otherTasks() {}
 
-  void deathCheck() {
-    super.deathCheck();
-    if (!paused && (!player1.ALIVE || !player2.ALIVE)) { //if the game is resumed, make both players alive again
-      player1.ALIVE = true;
-      player2.ALIVE = true;
-    }
-  }
-
 }

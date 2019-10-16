@@ -10,7 +10,7 @@ DESCRIPTION
 
 TECHSPEC
 
-  Pretty much all aspects of the game can be implemented as described. I have written pseudocode for nearly the whole program. The only thing that might be kinda iffy is drawing images and rotating them (I personally don't know how to do that, but I'm sure it is possible), and the CPU AI, which will be weird. The simplest way of controlling the CPU is by having it stationary and having its gun's aim be a function of the player's position, speed, and also a random factor, so that the CPU does not snipe you 100% of the time. The random factor, or the CPU's aim accuracy, will decrease as CPU_DIFFICULTY increases. Increasing CPU_DIFFICULTY will also increase the CPU's gun's fire rate and bullet damage.
+  Pretty much all aspects of the game can be implemented as described. I have written pseudocode for nearly the whole program. The only thing that might be kinda iffy is drawing images and rotating them (I personally don't know how to do that, but I'm sure it is possible), and the CPU AI, which will be weird. The simplest way of controlling the CPU is by having it stationary and having its gun's aim be a function of the player's position, speed, and also a random factor, so that the CPU does not snipe you 100% of the time. The random factor, or the CPU's aim inaccuracy, will decrease as CPU_DIFFICULTY increases. Increasing CPU_DIFFICULTY will also increase the CPU's gun's fire rate and bullet damage.
 
   The program is object oriented and has a main method in main.js which will run when the program starts. The main method shows a menu screen by default, but if one of the two buttons in the menu screen (one for Singleplayer and one for Multiplayer) is pressed, then a game begins. Singleplayer and Multiplayer are both object classes which inherit many attributes from the Game class. The main method runs a Game instance by calling its update() and draw() method.
 
@@ -20,21 +20,20 @@ TECHSPEC
       ~ Its highest-level methods are update() and draw(), which are used by the main method as just explained
       ~ Every Game has two Players, player1 and player2, and an array of Bullets, which contains all the Bullets flying around at a given time
       ~ Games can be paused and resumed and can be carried on after a player dies.
-      ~ All Games have a function for checking if bullets collide with players and for dealing damage, as well as everything else you might       
-        expect it to handle, but I'm not going to mention them all here
+      ~ All Games have methods for checking if bullets collide with players, for dealing damage, for handling user input, for handling game pauses, for handling new rounds, for updating the positions of all their components, and for doing any other higher-level tasks
 
       Multiplayer: less complicated, has two user controlled players
 
       Singleplayer: more complicated, has one CPU (player2) and one user controlled player (player1)
         ~ Has an array of guns with different attributes and names. Each time player1 kills the CPU and its score increases, its Gun object is
           set to the next gun in this array
-        ~ As player1's score increases, the CPU's accuracy (CPU_DIFFICULTY)
+        ~ As player1's score increases, the CPU's difficulty (CPU_DIFFICULTY) increases
         ~ the CPU will be controlled by the method ControlCPU(), and will function as described earlier
 
     Component: an abstract class for all objects which are moving or colliding during Games
       ~ each Component has variables for position, velocity, size, rotation, and color/image
       ~ the abstract Component class contains the general function for checking if a Component is colliding with another Component
-      ~ each Component has methods for updating its variables/positions (update()) and for rendering it (draw())
+      ~ each Component has a method for updating its variables/positions, update(), and for rendering it, draw()
 
       Bullet: a bullet object, pretty simple
         ~ a bullet's velocity is constant
