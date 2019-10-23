@@ -45,3 +45,18 @@ TECHSPEC
       Player: a player object, which has a Gun object tied to it
         ~ updates the position of its Gun with its own position so that they do not separate
         ~ has variables for health (HP), score (# of kills), and whether the player is alive
+
+
+12-DAY PLAN (NOTE: if you have time or if one day doesn't take so long, move on to the next day, so that you spend ~45 minutes each day)
+
+  Day 1: fix syntax in Game, Multiplayer and Singleplayer
+  Day 2: go through Component, Player Gun, and Bullet and fix all the syntax, and put in random values (for future testing)
+  Day 3: Code menu screen and UI (main.js)
+  Day 4: Code user input (multiplayer.js and singleplayer.js)
+  Day 5: Write Player constructor (and if you have time, move on to day 6 and 7)
+  Day 6: Write draw methods for Component and Player
+  Day 7: Write collidesWith() in Component)
+  Day 8: Fix pauseScreen(), deathScreen() methods
+  Day 9: Get multiplayer working (debugging, testing values, coding anything else)
+  Day 10 and 11: Code controlCPU, figure out some random values for CPU_DIFFICULTY and other values in singleplayer
+  Day 12: Get singleplayer working (debugging, testing values, coding anything else)
