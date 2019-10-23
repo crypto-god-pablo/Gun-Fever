@@ -47,16 +47,28 @@ TECHSPEC
         ~ has variables for health (HP), score (# of kills), and whether the player is alive
 
 
-12-DAY PLAN (NOTE: if you have time or if one day doesn't take so long, move on to the next day, so that you spend ~45 minutes each day)
+12-DAY PLAN
 
-  Day 1: fix syntax in Game, Multiplayer and Singleplayer
-  Day 2: go through Component, Player Gun, and Bullet and fix all the syntax, and put in random values (for future testing)
-  Day 3: Code menu screen and UI (main.js)
-  Day 4: Code user input (multiplayer.js and singleplayer.js)
-  Day 5: Write Player constructor (and if you have time, move on to day 6 and 7)
-  Day 6: Write draw methods for Component and Player
-  Day 7: Write collidesWith() in Component)
-  Day 8: Fix pauseScreen(), deathScreen() methods
-  Day 9: Get multiplayer working (debugging, testing values, coding anything else)
-  Day 10 and 11: Code controlCPU, figure out some random values for CPU_DIFFICULTY and other values in singleplayer
-  Day 12: Get singleplayer working (debugging, testing values, coding anything else)
+  Note: All of the pseudocode currently in these files IS pseudocode and is written in a mix of Java syntax and English.
+  As you start coding and filling out the methods that are outlined here, you should try to use proper JavaScript syntax,
+  and there will also be a whole day dedicated to debugging any errors and fixing syntax later. Also, I did not bother
+  with following any coding conventions in pseudocode such as making all variable names all-caps.
+  ALSO, there are a bunch of places where you would need to put in values for health or damage etc. Right now, I left
+  blank spaces (____) and did not assign any values. When you come across thsi when coding, just write an arbitrary value
+  that you think would be okay. These values will be tuned later.
+
+  Day 1: Code the methods in main.js (i.e. drawMenu(), singleplayerClicked(), multiplayerClicked() and maybe mouseClick())
+  Day 2: Code userInput() methods in both multiplayer.js and singleplayer.js
+  Day 3: Write draw() in component.js and drawScore() and drawHealthBar() in player.js
+  Day 4: Write collidesWith() and finish writing the Component class in component.js (including the constructor)
+  Day 5: Write the Bullet class in bullet.js and the Gun class in gun.js (including the constructors, actuallyFire(), fire(), and update())
+  Day 6: Finish writing everything in the Player class in player.js (including the constructor and all the other methods)
+  Day 7: Finish writing half of the methods in the Game class in game.js
+  Day 8: Finish writing the Game class in game.js and all of the methods you did not get to during Day 7
+  Day 9: Finish wriiting the Multiplayer class in multiplayer.js
+  Day 10: Finish writing main.js, but comment-out anything having to do with singleplayer, and comment-out the whole Singleplayer class in singleplayer.js.
+  Day 11 and 12: You should now be able to start and test a multiplayer game. Debug any errors. Test and tune values for player health, gun damage, etc. so that the multiplayer mode is solid. If you have time, move onto the experimental features in Day 13-15.
+
+  Day 13: Once the multiplayer mode is good, you can start working on singleplayer. Write the best AI (in the method controlCPU() in singplayer.js) that you can write in this time.
+  Day 14: Finish writing the Singleplayer class in singleplayer.js. You will need to code the array of guns that the player will get as his/her score increases.
+  Day 15: Finish up anything else in singleplayer.js. Then add all the singleplayer stuff back into main.js, so that you can select the singleplayer mode. You should now be able to test the singleplayer mode. Debug any errors, and test and tune values for gun damages, CPU difficulty, etc.

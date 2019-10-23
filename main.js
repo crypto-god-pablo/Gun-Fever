@@ -9,10 +9,10 @@ void drawMenu() {}
 way to code this, using an Event*/
 bool mouseClick() {}
 
-//returns true if the mouse most recently clicked the single player button
+//returns true if the mouse most recently clicked the singleplayer button
 bool singpleplayerClicked() {}
 
-//return true if the mouse most recently clicked the multi player button
+//return true if the mouse most recently clicked the multiplayer button
 bool multiplayerClicked() {}
 
 //the main method which will loop continuously

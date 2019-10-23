@@ -18,6 +18,9 @@ class Gun extends Component {
     currentGame.bullets.add(new Bullet(this.X, this.Y, BULLET_SPEED, BULLET_DAMAGE, this.A));
   }
 
+
+  //NOTE: systemTime() should return the literal time (since program start) in milliseconds or seconds if possible. This will allow us to make a sort-of reload timer
+
   void fire() { //checks if the gun is reloading or not
     if (!RELOADING) { //if the gun hasn't fired yet
       acutallyFire(); //acutally fire a bullet
