@@ -13,8 +13,35 @@ class Singleplayer extends Game {
 
   void userInput() {
     //only controls player1
-  }
+    document.addEventListener('keydown', keyDownHandler, false);
+    document.addEventListener('keyup', keyUpHandler, false);
+    var wPressed = false;
+    var sPressed = false;
+    var spacePressed = false;
+    function keyDownHandler(event){
+      if(event.keyCode == 87) {
+        wPressed = true;
+      }
+      else if(event.keyCode == 83) {
+        sPressed = true;
+      }
+      if(event.keyCode == 32) {
+        spacePressed = true;
+      }
+    }
 
+    function keyUpHandler(event){
+      if(event.keyCode == 87) {
+        wPressed = false;
+      }
+      else if(event.keyCode == 83) {
+        sPressed = false;
+      }
+      if(event.keyCode == 32) {
+        spacePressed = false;
+      }
+    }
+}
   //moves and controls the CPU player based on CPU_DIFFICULTY somehow
   void controlCPU() {
     //moves the CPU (changes player2.VY)
