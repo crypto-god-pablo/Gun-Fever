@@ -1,13 +1,13 @@
 Class Player{
 
-  function updatePlayer(Player player) {
+  function updatePlayer() {
     GUN.VX = this.VX; //moves gun with player
     GUN.VY = this.VY;
 
     if (this.hp <= 0) {  //checks if the player is alive
       this.alive = false;
     }
-    super.updateGame(); //updates player position
+    GAME.updateGame(); //updates player position
     GUN.updateGun(); //updates gun position
   }
 
@@ -17,6 +17,12 @@ Class Player{
 
   function drawScore() {
     //draws a player's score (number of kills)
+    ctx.save();
+    ctx.fillStyle = "black";
+    ctx.font = "24px Arial";
+    ctx.fillText("Player 1 Score: " + PLAYER2.deathCount, canvas.getBoundingClientRect().right - 75, canvas.getBoundingClientRect().top - 75);
+    ctx.fillText("Player 2 Score: " + PLAYER1.deathCount, canvas.getBoundingClientRect().right - 75, canvas.getBoundingClientRect().top - 110);
+    ctx.restore();
   }
 
   function draw() {
