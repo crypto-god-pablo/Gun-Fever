@@ -1,42 +1,34 @@
-class Player extends Component {
-  Gun GUN;
-  int HP;
-  int SCORE;
-  bool ALIVE;
+Class Player{
 
-  constructor(____) {
-    ____
-  }
-
-  void update() {
+  function updatePlayer(Player player) {
     GUN.VX = this.VX; //moves gun with player
     GUN.VY = this.VY;
 
-    if (HP <= 0) {  //checks if the player is alive
-      ALIVE = false;
+    if (this.hp <= 0) {  //checks if the player is alive
+      this.alive = false;
     }
-    super.update(); //updates player position
-    GUN.update(); //updates gun position
+    super.updateGame(); //updates player position
+    GUN.updateGun(); //updates gun position
   }
 
-  void drawHealthBar() {
+  function drawHealthBar() {
     //draws health bar for player
   }
 
-  void drawScore() {
+  function drawScore() {
     //draws a player's score (number of kills)
   }
 
-  void draw() {
-    super.draw();
+  function draw() {
+    //draws player at location
     GUN.draw();
     drawHealthBar();
     drawScore();
   }
 
   //method to bring the playre back to full health, called usually when a new round beings
-  void revive() {
-    HP = ____;
-    ALIVE = true;
+  function revive() {
+    hp = 100;
+    alive = true;
   }
 }
