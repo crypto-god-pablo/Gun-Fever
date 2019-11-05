@@ -29,19 +29,5 @@ class Component {
     return X_Overlap && Y_Overlap;
   }
 
-  //method to draw component
-  draw() {
-      ctx.save();
-      ctx.beginPath();
-      ctx.translate(x + w/2, y + h/2);
-      ctx.rotate(A*math.PI / 180);
-      ctx.rect(-w/2, -h/2, w, h);
-      ctx.fillStyle = C;
-      ctx.fill();
-      ctx.restore();
-    }
-    ctx.rotate(x + w/2, y + h/2);
-
-    //draws rectangle (or an image, if you decide to add pictures) at coords x,y; rotated A; with height H and width W; and with color C
-  }
+ 
 }

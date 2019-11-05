@@ -1,4 +1,3 @@
-Class Player{
 
   function updatePlayer() {
     GUN.VX = this.VX; //moves gun with player
@@ -37,4 +36,3 @@ Class Player{
     hp = 100;
     alive = true;
   }
-}
