@@ -11,17 +11,20 @@
   }
 
   function drawHealthBar() {
-    //draws health bar for player
+    ctx.fillStyle = "#FF0000";
+    ctx.rect(10,10,140,25);
+    ctx.rect(width - 150,10,140,25);
+    ctx.stroke();
+    ctx.fillRect(10,10,(PLAYER1.hp/100)*140, 25);
+    ctx.fillRect(width - 150,10,(PLAYER1.hp/100)*140, 25);
   }
 
   function drawScore() {
     //draws a player's score (number of kills)
-    ctx.save();
     ctx.fillStyle = "black";
-    ctx.font = "24px Arial";
-    ctx.fillText("Player 1 Score: " + PLAYER2.deathCount, canvas.getBoundingClientRect().right - 75, canvas.getBoundingClientRect().top - 75);
-    ctx.fillText("Player 2 Score: " + PLAYER1.deathCount, canvas.getBoundingClientRect().right - 75, canvas.getBoundingClientRect().top - 110);
-    ctx.restore();
+    ctx.font = "20px Arial";
+    ctx.fillText("Player 1 Score: " + PLAYER2.deathCount, width/2 - 65, 50);
+    ctx.fillText("Player 2 Score: " + PLAYER1.deathCount, width/2 - 65, 75);
   }
 
   function draw() {

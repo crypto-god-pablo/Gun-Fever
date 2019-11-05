@@ -113,6 +113,8 @@
       ctx.clearRect(0, 0, width, height);
       ctx.drawImage(player1Image, PLAYER1.x, PLAYER1.y);
       ctx.drawImage(player2Image, PLAYER2.x, PLAYER2.y);
+      drawScore();
+      drawHealthBar();
     }
     else{
       ctx.font = "30px Arial";
