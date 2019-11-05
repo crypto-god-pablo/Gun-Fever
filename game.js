@@ -1,125 +1,125 @@
-class Game {
-  //whether the game is still going or not
-  bool active;
-
-  //whether the game has been paused or not
-  bool paused;
-
-  //a game includes the two player objects
-  Player player1;
-  Player player2;
-
-  //all the bullet objects which are currently in existence
-  List<Bullet> bullets;
-
-  //the constructor
-  constructor(Player player1, Player player2) {
-    this.player1 = player1;
-    this.player2 = player2;
-    active = true;
-    paused = false;
-    bullets = new List<Bullet>();
-  }
-
+  const MOVEMENT_SPEED = 3;
+  var player1Image = new Image();
+  var player2Image = new Image();
 
   //handles things that happen in response to button presses
-  void userInput() {}
+  function userInput() {}
 
   //handles things that need to happen every update
-  void otherTasks() {}
-
+  function otherTasks() {}
   //checks if bullets collide with players or go outside the screen bounds
-  void bulletCollisions() {
-    for (Bullet b : bullets) {  //goes trough the list of bullets and checks each of them
-      if (b goes out of bounds) {
-        bullets.remove(b); //removes that bullet from the list; note: b could be anywhere in the list, and i don't think remove is a real function
-      }
-      if (b collides with player1) {
-        player1.HP -= b.damage; //deals damage to player1 and removes bullet from game
-        bullets.remove(b);
-      }
-      if (b collides with player2) {
-        player2.HP -= b.damage; //deals damage to player2 and removes bullet from game
-        bullets.remove(b)
-      }
-    }
+  function bulletCollisions(){
   }
 
   //updates all players and bullets
-  void updateComponents() {
+  function updateComponents() {
     player1.update();
     player2.update();
-    for (Bullet b : bullets) {
-      b.update();
-    }
   }
 
   //all of the things that need to happen after a player dies and a new game is started
-  void newRoundTasks() {
-    player1.revive(); //brings both players back to life
-    player2.revive();
+  function newRoundTasks() {
+    PLAYER1.revive(); //brings both players back to life
+    PLAYER2.revive();
   }
 
   //the method that gets called when the game is paused
-  void pauseScreen() {
+  function pauseScreen() {
     //draw message in center of screen saying: "Would you like to continue? Press Y or N."
     if (keyPressed) {
       if (key == 'Y') { //if Y is pressed, unpause the game
-        paused = false;
+        GAME.paused = false;
         if (!player1.ALVE || !player2.ALIVE) { //if one of the players is dead and the game is resumed, that means that it must be a new round
           newRoundTasks();
         }
       } else if (key == 'N') { //if N is pressed, set active to false and unpause the
-        active = false;
-        paused = false;
+        GAME.active = false;
+        GAME.paused = false;
       }
     }
   }
 
 
   //checks if the game gets paused by pressing 'P' on the keyboard
-  bool pauseCheck() {
+  function pauseCheck() {
     if (keyPressed()) {
       if (key == 'P') { //if P is pressed, pause the game
-        paused = true;
+        GAME.paused = true;
       }
     }
   }
 
 
   //checks to see if one of the players died
-  bool deathCheck() {
-    if (!player1.ALIVE || !player2.ALIVE) {
-      if (player1.ALIVE) {  //increases the score of the winning player
-        player1.SCORE++;
+  function deathCheck() {
+    if (!PLAYER1.alive || !PLAYER2.alive) {
+      if (PLAYER1.alive) {  //increases the score of the winning player
+        PLAYER1.alive = false;
+        PLAYER1.deathCount++;
       } else {
-        player2.SCORE++;
+        PLAYER2.alive = false;
+        PLAYER2.deathCount++;
       }
-      paused = true;
+      GAME.paused = true;
     }
   }
 
   //the method which updates the game
-  void update() {
-    if (!paused && active) {
-      userInput();
-      otherTasks();
-      bulletCollisions();
-      updateComponents();
-      pauseCheck()
-      deathCheck();
-    } else if (active) {
-      pauseScreen();
+  function updateGame() {
+    if (!this.paused && this.active) {
+      this.userInput();
+      this.otherTasks();
+      this.bulletCollisions();
+      this.updateComponents();
+      this.pauseCheck()
+      this.deathCheck();
+    } else if (this.active) {
+      this.pauseScreen();
     }
   }
 
   //draws all the components and maybe a background image
-  void draw() {
-    //maybe draws a background image first
-    player1.draw();
-    player2.draw();
-    for (Bullet b : bullets) {
-      b.draw();
+  function drawGame() {
+    ctx.clearRect(0, 0, width, height);
+    player1Image.src = "sprites/player1.png";
+    player2Image.src = "sprites/player2.png";
+    player1Image.onload = function(){
+      ctx.drawImage(player1Image, PLAYER1.x, PLAYER1.y);
     }
+    player2Image.onload = function(){
+      ctx.drawImage(player2Image, PLAYER2.x, PLAYER2.y);
+    }
+    //maybe draws a background image first
+    gameLoop();
   }
-}
+
+  function gameLoop() {
+    if(!GAME.paused && GAME.active){
+      if(CONTROLS.firstPlayer.up && PLAYER1.y > 0) {
+        PLAYER1.y -= MOVEMENT_SPEED;
+      }
+      else if(CONTROLS.firstPlayer.down && PLAYER1.y < height) {
+        PLAYER1.y += MOVEMENT_SPEED;
+      }
+      if(GAME.multiplayer)
+      {
+        if(CONTROLS.secondPlayer.up && PLAYER2.y > 0) {
+          PLAYER2.y -= MOVEMENT_SPEED;
+        }
+        else if(CONTROLS.secondPlayer.down && PLAYER2.y < height) {
+          PLAYER2.y += MOVEMENT_SPEED;
+        }
+      }
+      ctx.clearRect(0, 0, width, height);
+      ctx.drawImage(player1Image, PLAYER1.x, PLAYER1.y);
+      ctx.drawImage(player2Image, PLAYER2.x, PLAYER2.y);
+      drawScore();
+      drawHealthBar();
+    }
+    else{
+      ctx.font = "30px Arial";
+      ctx.fillText("Game Over      Level " + GAME.level, 135, 200);
+    }
+
+    window.requestAnimationFrame(gameLoop);
+  }

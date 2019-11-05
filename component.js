@@ -29,8 +29,5 @@ class Component {
     return X_Overlap && Y_Overlap;
   }
 
-  //method to draw component
-  draw() {
-    //draws rectangle (or an image, if you decide to add pictures) at coords x,y; rotated A; with height H and width W; and with color C
-  }
+ 
 }
